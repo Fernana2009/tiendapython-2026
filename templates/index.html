@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Sistema Tienda</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <h1>Bienvenido al Sistema</h1>
+
+    <p>
+        Usuario:
+        {{ session["correo"] }}
+    </p>
+
+    <a href="/logout">
+        Cerrar Sesión
+    </a>
+
+    <hr>
+
+    <div class="contenedor-cards">
+
+        <a href="/registrar-producto" class="card">
+
+            <h2>Registrar Productos</h2>
+
+            <p>
+                Permite agregar nuevos productos
+                al sistema.
+            </p>
+
+        </a>
+
+        <a href="/ver-productos" class="card">
+
+            <h2>Ver Productos</h2>
+
+            <p>
+                Permite visualizar todos los
+                productos registrados.
+            </p>
+
+        </a>
+
+    </div>
+
+</body>
+</html>

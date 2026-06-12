@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Ver Productos</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <h1>Productos Registrados</h1>
+
+    <a href="/">Volver al inicio</a>
+
+    <hr>
+
+    <div class="contenedor-tabla">
+
+        <input 
+            type="text"
+            id="buscador"
+            placeholder="Buscar producto..."
+        >
+
+        <table border="1">
+
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+                <th>Stock</th>
+            </tr>
+
+            {% for producto in productos %}
+
+            <tr class="fila-producto">
+
+                <td>{{ producto[0] }}</td>
+
+                <td>{{ producto[1] }}</td>
+
+                <td>{{ producto[2] }}</td>
+
+                <td>
+
+                    {% if producto[3] %}
+
+                        <img 
+                        src="{{ url_for('static',
+                        filename='uploads/' + producto[3]) }}"
+                        width="80">
+
+                    {% else %}
+
+                        Sin imagen
+
+                    {% endif %}
+
+                </td>
+
+                <td>{{ producto[4] }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+<script>
+
+const buscador = document.getElementById("buscador")
+
+buscador.addEventListener("keyup", function(){
+
+    const texto = buscador.value.toLowerCase()
+
+    const filas = document.querySelectorAll(".fila-producto")
+
+    filas.forEach(function(fila){
+
+        const contenido = fila.textContent.toLowerCase()
+
+        if(contenido.includes(texto)){
+            fila.style.display = ""
+        }
+        else{
+            fila.style.display = "none"
+        }
+
+    })
+
+})
+
+</script>
+
+</body>
+</html>
