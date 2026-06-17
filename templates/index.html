@@ -1,54 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-
-    <title>Sistema Tienda</title>
-
-    <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Sistema Tienda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleindex.css') }}">
 </head>
-
 <body>
 
-    <h1>Bienvenido al Sistema</h1>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="brand-container">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Yaourt à l'axolotl" class="main-logo">
+                <div class="brand-text">
+                    <h1>Yaourt à l'axolotl</h1>
+                    <p class="user-welcome">Bienvenido: <span>{{ session["correo"] }}</span></p>
+                </div>
+            </div>
+            <a href="/logout" class="btn-logout">Cerrar Sesión</a>
+        </div>
+    </header>
 
-    <p>
-        Usuario:
-        {{ session["correo"] }}
-    </p>
+    <main class="dashboard-container">
+        
+        <h2 class="section-title">Panel de Administración</h2>
+        
+        <div class="contenedor-cards">
 
-    <a href="/logout">
-        Cerrar Sesión
-    </a>
+            <a href="/registrar-producto" class="card">
+                <div class="card-icon">➕</div>
+                <h2>Registrar Productos</h2>
+                <p>Permite agregar nuevos productos al sistema de inventario de forma rápida.</p>
+                <span class="card-action">Ir a registrar →</span>
+            </a>
 
-    <hr>
+            <a href="/ver-productos" class="card">
+                <div class="card-icon">📦</div>
+                <h2>Ver Productos</h2>
+                <p>Permite visualizar, gestionar y controlar todos los productos registrados.</p>
+                <span class="card-action">Ver catálogo →</span>
+            </a>
 
-    <div class="contenedor-cards">
-
-        <a href="/registrar-producto" class="card">
-
-            <h2>Registrar Productos</h2>
-
-            <p>
-                Permite agregar nuevos productos
-                al sistema.
-            </p>
-
-        </a>
-
-        <a href="/ver-productos" class="card">
-
-            <h2>Ver Productos</h2>
-
-            <p>
-                Permite visualizar todos los
-                productos registrados.
-            </p>
-
-        </a>
-
-    </div>
+        </div>
+    </main>
 
 </body>
 </html>

@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Iniciar Sesión</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Esencial para celular -->
+    <title>Iniciar Sesión - Yaourt à l'axolotl</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -10,20 +11,25 @@
 <div class="login-container">
 
     <div class="login-card">
+        
+        <!-- Contenedor del logo oficial -->
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Yaourt à l'axolotl" class="login-logo">
+        </div>
 
-        <h1>Yogur'ia</h1>
-        <p>Bienvenido nuevamente</p>
+        <h1>Yaourt à l'axolotl</h1>
+        <p class="subtitle">Bienvenido nuevamente</p>
 
         <form action="#" method="POST">
 
             <div class="input-group">
-                <label>Correo electrónico</label>
-                <input type="email" placeholder="ejemplo@gmail.com">
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" placeholder="ejemplo@gmail.com" required>
             </div>
 
             <div class="input-group">
-                <label>Contraseña</label>
-                <input type="password" placeholder="********">
+                <label for="clave">Contraseña</label>
+                <input type="password" id="clave" name="clave" placeholder="********" required>
             </div>
 
             <button type="submit">Iniciar Sesión</button>
