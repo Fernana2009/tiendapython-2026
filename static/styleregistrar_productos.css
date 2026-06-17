@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
@@ -16,217 +17,76 @@
     /* Sombras ultra suaves de la referencia */
     --shadow-soft: 0 12px 35px rgba(100, 49, 35, 0.04);
 }
-/* --- Variables de Marca --- */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-
-:root {
-    --color-terracota: #643123;
-    --color-terracota-dark: #4d2318;
-    --color-crema-fondo: #FDF8F2;
-    --color-texto: #2C1A14;
-    --color-borde: #E6DCD3;
-    --color-blanco: #FFFFFF;
-    --font-serif: 'Playfair Display', serif;
-    --font-sans: 'Plus Jakarta Sans', sans-serif;
-    --shadow-soft: 0 12px 35px rgba(100, 49, 35, 0.04);
-}
-
-/* --- Reseteo Base --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font-sans);
-}
-
-body {
-    background-color: var(--color-crema-fondo);
-    color: var(--color-texto);
-    min-height: 100vh;
-    padding: 40px 20px;
-}
-
-/* --- Contenedor Principal --- */
-.form-container {
-    width: 100%;
-    max-width: 580px;
-    margin: 0 auto;
-}
-
-/* Botón Volver */
-.header-navigation {
-    margin-bottom: 25px;
-}
-
-.btn-back {
-    text-decoration: none;
-    color: var(--color-texto);
-    font-size: 15px;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.2s;
-}
-
-.btn-back:hover {
-    color: var(--color-terracota);
-}
-
-/* --- Tarjeta del Formulario --- */
-.form-card {
-    background-color: var(--color-blanco);
-    padding: 45px 40px;
-    border-radius: 28px;
-    border: 1px solid var(--color-borde);
-    box-shadow: var(--shadow-soft);
-}
-
-.form-header {
-    text-align: center;
-    margin-bottom: 35px;
-}
-
-.form-header h2 {
+/* --- Tratamiento de Cursivas para el Título Editorial --- */
+.form-header h2 em {
+    font-style: italic;
     font-family: var(--font-serif);
-    color: var(--color-terracota);
-    font-size: 28px;
-    font-weight: 700;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+    font-weight: 400;
 }
 
-.form-header p {
-    color: #7A665E;
-    font-size: 15px;
-    margin-top: 5px;
-}
-
-/* --- Alertas Flash de Flask --- */
-.flash-messages {
-    margin-bottom: 25px;
-}
-
-.flash-alert {
-    background-color: #FDF4F0;
-    border-left: 4px solid var(--color-terracota);
-    color: var(--color-texto);
-    padding: 14px 18px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* --- Diseño de Inputs --- */
-.input-group {
-    margin-bottom: 24px;
-}
-
-.form-row {
-    display: flex;
-    gap: 20px;
-}
-
-.form-row .input-group {
-    flex: 1;
-}
-
-.input-group label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--color-texto);
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.input-icon {
-    position: absolute;
-    left: 18px;
-    color: #A6928A;
-    font-size: 15px;
-}
-
-.input-wrapper input,
-.input-wrapper textarea {
-    width: 100%;
-    padding: 15px 15px 15px 48px;
-    border: 1.5px solid var(--color-borde);
-    border-radius: 14px;
-    font-size: 15px;
-    color: var(--color-texto);
-    background-color: var(--color-blanco);
-    transition: all 0.3s ease;
-}
-
-.input-wrapper input:focus,
-.input-wrapper textarea:focus {
-    outline: none;
-    border-color: var(--color-terracota);
-    box-shadow: 0 0 0 4px rgba(100, 49, 35, 0.06);
-}
-
-/* --- Caja Personalizada de Carga de Archivos --- */
-.file-upload-box {
+/* --- Nuevo Contenedor del Enlace de Imagen --- */
+.input-image-container {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.file-link {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    border: 2px dashed var(--color-borde);
-    padding: 30px 20px;
-    border-radius: 18px;
-    cursor: pointer;
-    background-color: #FCFAF7;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.file-upload-box:hover {
-    border-color: var(--color-terracota);
-    background-color: #F9F3EB;
-}
-
-.file-icon {
-    font-size: 30px;
-    color: #A6928A;
-    margin-bottom: 10px;
-    transition: color 0.3s;
-}
-
-.file-upload-box:hover .file-icon {
+    gap: 10px;
     color: var(--color-terracota);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 4px 0;
 }
 
-.file-text {
-    font-size: 14px;
-    color: #7A665E;
+.file-link i {
+    font-size: 18px;
+}
+
+.file-link span {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.file-link:hover {
+    color: var(--color-terracota-dark);
+    transform: translateX(2px);
+}
+
+/* Cuando el archivo ya se subió */
+.file-link.uploaded {
+    color: #2E6B4E; /* Tono verde orgánico de la marca */
+}
+
+.file-status {
+    font-size: 13px;
+    color: #A6928A;
+    font-style: italic;
+    padding-left: 28px;
+}
+
+.file-status.active {
+    color: #2E6B4E;
     font-weight: 500;
+    font-style: normal;
 }
 
-.file-upload-box input[type="file"] {
-    display: none;
-}
-
-/* --- Botón de Guardado Ovalado --- */
+/* --- Botón de Guardado Ovalado Estilo Píldora --- */
 .btn-submit {
     width: 100%;
     padding: 16px;
     background-color: var(--color-terracota);
     color: var(--color-blanco);
     border: none;
-    border-radius: 50px; /* Forma de píldora idéntica al sitio web */
+    border-radius: 50px; /* Redondeado idéntico a los botones del banner principal */
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -234,9 +94,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
     transition: all 0.3s ease;
-    margin-top: 15px;
 }
 
 .btn-submit:hover {
@@ -245,8 +103,6 @@ body {
     transform: translateY(-1px);
 }
 
-@media (max-width: 480px) {
-    .form-card { padding: 35px 20px; border-radius: 24px; }
-    .form-row { flex-direction: column; gap: 0; }
-    .form-header h2 { font-size: 24px; }
+.btn-submit:active {
+    transform: translateY(1px);
 }
