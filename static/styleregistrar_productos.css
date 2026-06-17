@@ -1,12 +1,34 @@
-/* --- Variables de Marca --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
 :root {
-    --color-terracota: #A94433;
-    --color-terracota-dark: #8E3425;
-    --color-crema-fondo: #FBF8F3;
-    --color-texto: #4A2E2B;
-    --color-borde: #E3D9D6;
+    --color-terracota: #643123;         /* El marrón rojizo oscuro exacto de la web */
+    --color-terracota-dark: #4d2318;    /* Variación hover más oscura */
+    --color-crema-fondo: #FDF8F2;       /* Fondo beige cálido orgánico */
+    --color-texto: #2C1A14;             /* Café oscuro casi negro para lectura limpia */
+    --color-borde: #E6DCD3;             /* Bordes suaves que no compiten visualmente */
     --color-blanco: #FFFFFF;
-    --color-teal: #1E7E7A; /* Color de foco */
+    --color-gris-suave: #F9F3EB;        /* Fondos alternos sutiles */
+    
+    /* Tipografías */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    
+    /* Sombras ultra suaves de la referencia */
+    --shadow-soft: 0 12px 35px rgba(100, 49, 35, 0.04);
+}
+/* --- Variables de Marca --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --color-terracota: #643123;
+    --color-terracota-dark: #4d2318;
+    --color-crema-fondo: #FDF8F2;
+    --color-texto: #2C1A14;
+    --color-borde: #E6DCD3;
+    --color-blanco: #FFFFFF;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --shadow-soft: 0 12px 35px rgba(100, 49, 35, 0.04);
 }
 
 /* --- Reseteo Base --- */
@@ -14,26 +36,26 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
 }
 
 body {
     background-color: var(--color-crema-fondo);
     color: var(--color-texto);
     min-height: 100vh;
-    padding: 30px 20px;
+    padding: 40px 20px;
 }
 
 /* --- Contenedor Principal --- */
 .form-container {
     width: 100%;
-    max-width: 550px; /* Un poco más ancho para albergar cómodamente el formulario */
+    max-width: 580px;
     margin: 0 auto;
 }
 
 /* Botón Volver */
 .header-navigation {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .btn-back {
@@ -41,37 +63,35 @@ body {
     color: var(--color-texto);
     font-size: 15px;
     font-weight: 600;
-    opacity: 0.8;
-    transition: all 0.2s ease;
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    transition: color 0.2s;
 }
 
 .btn-back:hover {
-    opacity: 1;
     color: var(--color-terracota);
 }
 
 /* --- Tarjeta del Formulario --- */
 .form-card {
     background-color: var(--color-blanco);
-    padding: 40px 35px;
-    border-radius: 24px;
+    padding: 45px 40px;
+    border-radius: 28px;
     border: 1px solid var(--color-borde);
-    box-shadow: 0 10px 30px rgba(74, 46, 43, 0.04);
+    box-shadow: var(--shadow-soft);
 }
 
 .form-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 .form-header h2 {
+    font-family: var(--font-serif);
     color: var(--color-terracota);
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
-    margin-bottom: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,8 +99,9 @@ body {
 }
 
 .form-header p {
-    color: #8C7672;
-    font-size: 14px;
+    color: #7A665E;
+    font-size: 15px;
+    margin-top: 5px;
 }
 
 /* --- Alertas Flash de Flask --- */
@@ -89,11 +110,11 @@ body {
 }
 
 .flash-alert {
-    background-color: #FDF3F1;
+    background-color: #FDF4F0;
     border-left: 4px solid var(--color-terracota);
     color: var(--color-texto);
-    padding: 12px 15px;
-    border-radius: 8px;
+    padding: 14px 18px;
+    border-radius: 12px;
     font-size: 14px;
     font-weight: 600;
     display: flex;
@@ -103,7 +124,7 @@ body {
 
 /* --- Diseño de Inputs --- */
 .input-group {
-    margin-bottom: 22px;
+    margin-bottom: 24px;
 }
 
 .form-row {
@@ -117,10 +138,12 @@ body {
 
 .input-group label {
     display: block;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--color-texto);
     margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .input-wrapper {
@@ -131,26 +154,28 @@ body {
 
 .input-icon {
     position: absolute;
-    left: 15px;
-    color: #A0908E;
+    left: 18px;
+    color: #A6928A;
     font-size: 15px;
 }
 
-.input-wrapper input {
+.input-wrapper input,
+.input-wrapper textarea {
     width: 100%;
-    padding: 14px 15px 14px 45px;
+    padding: 15px 15px 15px 48px;
     border: 1.5px solid var(--color-borde);
-    border-radius: 12px;
+    border-radius: 14px;
     font-size: 15px;
     color: var(--color-texto);
     background-color: var(--color-blanco);
     transition: all 0.3s ease;
 }
 
-.input-wrapper input:focus {
+.input-wrapper input:focus,
+.input-wrapper textarea:focus {
     outline: none;
-    border-color: var(--color-teal);
-    box-shadow: 0 0 0 4px rgba(30, 126, 122, 0.1);
+    border-color: var(--color-terracota);
+    box-shadow: 0 0 0 4px rgba(100, 49, 35, 0.06);
 }
 
 /* --- Caja Personalizada de Carga de Archivos --- */
@@ -160,23 +185,23 @@ body {
     align-items: center;
     justify-content: center;
     border: 2px dashed var(--color-borde);
-    padding: 25px 15px;
-    border-radius: 14px;
+    padding: 30px 20px;
+    border-radius: 18px;
     cursor: pointer;
-    background-color: #FDFDFD;
+    background-color: #FCFAF7;
     transition: all 0.3s ease;
     text-align: center;
 }
 
 .file-upload-box:hover {
     border-color: var(--color-terracota);
-    background-color: #FAF6F5;
+    background-color: #F9F3EB;
 }
 
 .file-icon {
-    font-size: 26px;
-    color: #A0908E;
-    margin-bottom: 8px;
+    font-size: 30px;
+    color: #A6928A;
+    margin-bottom: 10px;
     transition: color 0.3s;
 }
 
@@ -186,56 +211,42 @@ body {
 
 .file-text {
     font-size: 14px;
-    color: #7A6966;
+    color: #7A665E;
+    font-weight: 500;
 }
 
 .file-upload-box input[type="file"] {
-    display: none; /* Ocultamos el input feo por defecto */
+    display: none;
 }
 
-/* --- Botón de Guardado Premium --- */
+/* --- Botón de Guardado Ovalado --- */
 .btn-submit {
     width: 100%;
-    padding: 15px;
+    padding: 16px;
     background-color: var(--color-terracota);
     color: var(--color-blanco);
     border: none;
-    border-radius: 12px;
+    border-radius: 50px; /* Forma de píldora idéntica al sitio web */
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(169, 68, 51, 0.15);
+    box-shadow: 0 6px 20px rgba(100, 49, 35, 0.15);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     transition: all 0.3s ease;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .btn-submit:hover {
     background-color: var(--color-terracota-dark);
-    box-shadow: 0 6px 18px rgba(169, 68, 51, 0.25);
+    box-shadow: 0 8px 25px rgba(100, 49, 35, 0.25);
     transform: translateY(-1px);
 }
 
-.btn-submit:active {
-    transform: translateY(1px);
-}
-
-/* --- Adaptabilidad Móvil (Celulares) --- */
 @media (max-width: 480px) {
-    .form-card {
-        padding: 30px 20px;
-        border-radius: 20px;
-    }
-    
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
-    
-    .form-header h2 {
-        font-size: 21px;
-    }
+    .form-card { padding: 35px 20px; border-radius: 24px; }
+    .form-row { flex-direction: column; gap: 0; }
+    .form-header h2 { font-size: 24px; }
 }

@@ -1,12 +1,34 @@
-/* --- Variables de Marca --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
 :root {
-    --color-terracota: #A94433;
-    --color-terracota-dark: #8E3425;
-    --color-crema-fondo: #FBF8F3;
-    --color-texto: #4A2E2B;
-    --color-borde: #E3D9D6;
+    --color-terracota: #643123;         /* El marrón rojizo oscuro exacto de la web */
+    --color-terracota-dark: #4d2318;    /* Variación hover más oscura */
+    --color-crema-fondo: #FDF8F2;       /* Fondo beige cálido orgánico */
+    --color-texto: #2C1A14;             /* Café oscuro casi negro para lectura limpia */
+    --color-borde: #E6DCD3;             /* Bordes suaves que no compiten visualmente */
     --color-blanco: #FFFFFF;
-    --color-teal: #1E7E7A;
+    --color-gris-suave: #F9F3EB;        /* Fondos alternos sutiles */
+    
+    /* Tipografías */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    
+    /* Sombras ultra suaves de la referencia */
+    --shadow-soft: 0 12px 35px rgba(100, 49, 35, 0.04);
+}
+/* --- Variables de Marca --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --color-terracota: #643123;
+    --color-terracota-dark: #4d2318;
+    --color-crema-fondo: #FDF8F2;
+    --color-texto: #2C1A14;
+    --color-borde: #E6DCD3;
+    --color-blanco: #FFFFFF;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --shadow-soft: 0 12px 35px rgba(100, 49, 35, 0.04);
 }
 
 /* --- Base --- */
@@ -14,26 +36,26 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
 }
 
 body {
     background-color: var(--color-crema-fondo);
     color: var(--color-texto);
     min-height: 100vh;
-    padding: 30px 20px;
+    padding: 40px 20px;
 }
 
 /* --- Contenedor Principal --- */
 .table-container {
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 /* Botón Volver */
 .header-navigation {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .btn-back {
@@ -41,44 +63,43 @@ body {
     color: var(--color-texto);
     font-size: 15px;
     font-weight: 600;
-    opacity: 0.8;
-    transition: all 0.2s ease;
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    transition: color 0.2s;
 }
 
 .btn-back:hover {
-    opacity: 1;
     color: var(--color-terracota);
 }
 
 /* --- Tarjeta Base --- */
 .table-card {
     background-color: var(--color-blanco);
-    padding: 35px;
-    border-radius: 24px;
+    padding: 40px;
+    border-radius: 28px;
     border: 1px solid var(--color-borde);
-    box-shadow: 0 10px 30px rgba(74, 46, 43, 0.03);
+    box-shadow: var(--shadow-soft);
 }
 
 .table-header {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .table-header h2 {
+    font-family: var(--font-serif);
     color: var(--color-terracota);
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
-    margin-bottom: 5px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
 .table-header p {
-    color: #8C7672;
-    font-size: 14px;
+    color: #7A665E;
+    font-size: 15px;
+    margin-top: 5px;
 }
 
 /* --- Input Buscador Estilizado --- */
@@ -86,38 +107,38 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .search-icon {
     position: absolute;
-    left: 15px;
-    color: #A0908E;
+    left: 18px;
+    color: #A6928A;
     font-size: 15px;
 }
 
 #buscador {
     width: 100%;
-    padding: 12px 15px 12px 45px;
+    padding: 14px 15px 14px 48px;
     border: 1.5px solid var(--color-borde);
-    border-radius: 12px;
+    border-radius: 14px;
     font-size: 15px;
     color: var(--color-texto);
-    background-color: #FFF;
+    background-color: var(--color-blanco);
     transition: all 0.3s ease;
 }
 
 #buscador:focus {
     outline: none;
-    border-color: var(--color-teal);
-    box-shadow: 0 0 0 4px rgba(30, 126, 122, 0.1);
+    border-color: var(--color-terracota);
+    box-shadow: 0 0 0 4px rgba(100, 49, 35, 0.06);
 }
 
-/* --- Tabla de Diseño Premium --- */
+/* --- Tabla --- */
 .responsive-table {
     width: 100%;
-    overflow-x: auto; /* Permite scroll horizontal si la tabla es más grande que el celular */
-    border-radius: 14px;
+    overflow-x: auto;
+    border-radius: 18px;
     border: 1px solid var(--color-borde);
 }
 
@@ -129,67 +150,71 @@ table {
     background-color: var(--color-blanco);
 }
 
-/* Encabezados */
+/* Encabezados de Tabla de estilo menú */
 th {
-    background-color: #FAF5F3; /* Un tono crema muy suave */
+    background-color: #FAF5EE; /* Crema suave para cabeceras */
     color: var(--color-texto);
     font-weight: 600;
-    padding: 16px;
+    padding: 18px;
     border-bottom: 2px solid var(--color-borde);
     white-space: nowrap;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
 }
 
 th i {
     color: var(--color-terracota);
-    margin-right: 4px;
+    margin-right: 6px;
 }
 
-/* Celdas del cuerpo */
 td {
-    padding: 14px 16px;
-    border-bottom: 1px solid #F0EAE8;
+    padding: 16px 18px;
+    border-bottom: 1px solid #F6EFE7;
     vertical-align: middle;
-    color: #5C4542;
+    color: var(--color-texto);
 }
 
-/* Alternar colores en las filas */
+/* Alternar colores en las filas de forma sutil */
 tbody tr:nth-child(even) {
-    background-color: #FDFCFB;
+    background-color: #FDFDFD;
 }
 
-/* Efecto hover en las filas */
 tbody tr:hover {
-    background-color: #FDF5F3;
+    background-color: #FCFAF6;
 }
 
 /* Estilos de datos específicos */
 .td-id {
     font-family: monospace;
     font-weight: 600;
-    color: #9E8581;
+    color: #907C74;
 }
 
 .td-nombre {
+    font-family: var(--font-serif);
+    font-size: 16px;
     font-weight: 600;
     color: var(--color-texto);
 }
 
 .td-precio {
     font-weight: 700;
-    color: var(--color-teal);
+    color: var(--color-terracota); /* El precio toma el color de acento primario */
 }
 
-/* --- Contenedor de Imágenes Redondeadas --- */
+/* --- Contenedor de Imágenes Circulares u Ovaladas --- */
 .product-img-container {
-    width: 55px;
-    height: 55px;
-    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Cambiado a círculos como los gráficos de la web */
     overflow: hidden;
-    border: 1px solid var(--color-borde);
+    border: 1.5px solid var(--color-borde);
     background-color: #FFF;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 10px rgba(100, 49, 35, 0.04);
 }
 
 .product-img-container img {
@@ -200,43 +225,36 @@ tbody tr:hover {
 
 .no-image {
     font-size: 13px;
-    color: #A0908E;
+    color: #A6928A;
     display: inline-flex;
     align-items: center;
     gap: 5px;
 }
 
-/* --- Etiquetas de Stock (Badges) --- */
+/* --- Etiquetas de Stock (Badges Redondeados) --- */
 .stock-badge {
     display: inline-block;
-    padding: 5px 12px;
-    background-color: #E6F4F3;
-    color: var(--color-teal);
+    padding: 6px 14px;
+    background-color: #EBF5F0; /* Tono verde natural suave */
+    color: #2E6B4E;
     font-size: 13px;
     font-weight: 600;
-    border-radius: 20px;
+    border-radius: 30px;
 }
 
-/* Stock en 0 o negativo */
+/* Stock en 0 (Agotado) cambia a la paleta roja de la marca */
 .stock-badge.empty {
-    background-color: #FCEBE8;
+    background-color: #FDF2F0;
     color: var(--color-terracota);
 }
 
-/* Stock bajo (alerta menor a 5 unidades) */
+/* Stock bajo */
 .stock-badge.low {
-    background-color: #FEF6E9;
-    color: #D48413;
+    background-color: #FFF8EC;
+    color: #A66E1E;
 }
 
-/* --- Ajustes en pantallas chicas --- */
 @media (max-width: 600px) {
-    .table-card {
-        padding: 20px 15px;
-        border-radius: 20px;
-    }
-    
-    .table-header h2 {
-        font-size: 20px;
-    }
+    .table-card { padding: 25px 15px; border-radius: 20px; }
+    .table-header h2 { font-size: 22px; }
 }
