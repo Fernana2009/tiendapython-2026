@@ -1,0 +1,241 @@
+/* --- Variables de Marca --- */
+:root {
+    --color-terracota: #A94433;
+    --color-terracota-dark: #8E3425;
+    --color-crema-fondo: #FBF8F3;
+    --color-texto: #4A2E2B;
+    --color-borde: #E3D9D6;
+    --color-blanco: #FFFFFF;
+    --color-teal: #1E7E7A; /* Color de foco */
+}
+
+/* --- Reseteo Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--color-crema-fondo);
+    color: var(--color-texto);
+    min-height: 100vh;
+    padding: 30px 20px;
+}
+
+/* --- Contenedor Principal --- */
+.form-container {
+    width: 100%;
+    max-width: 550px; /* Un poco más ancho para albergar cómodamente el formulario */
+    margin: 0 auto;
+}
+
+/* Botón Volver */
+.header-navigation {
+    margin-bottom: 20px;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: var(--color-texto);
+    font-size: 15px;
+    font-weight: 600;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-back:hover {
+    opacity: 1;
+    color: var(--color-terracota);
+}
+
+/* --- Tarjeta del Formulario --- */
+.form-card {
+    background-color: var(--color-blanco);
+    padding: 40px 35px;
+    border-radius: 24px;
+    border: 1px solid var(--color-borde);
+    box-shadow: 0 10px 30px rgba(74, 46, 43, 0.04);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-header h2 {
+    color: var(--color-terracota);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-header p {
+    color: #8C7672;
+    font-size: 14px;
+}
+
+/* --- Alertas Flash de Flask --- */
+.flash-messages {
+    margin-bottom: 25px;
+}
+
+.flash-alert {
+    background-color: #FDF3F1;
+    border-left: 4px solid var(--color-terracota);
+    color: var(--color-texto);
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* --- Diseño de Inputs --- */
+.input-group {
+    margin-bottom: 22px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .input-group {
+    flex: 1;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-texto);
+    margin-bottom: 8px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    color: #A0908E;
+    font-size: 15px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 15px 14px 45px;
+    border: 1.5px solid var(--color-borde);
+    border-radius: 12px;
+    font-size: 15px;
+    color: var(--color-texto);
+    background-color: var(--color-blanco);
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--color-teal);
+    box-shadow: 0 0 0 4px rgba(30, 126, 122, 0.1);
+}
+
+/* --- Caja Personalizada de Carga de Archivos --- */
+.file-upload-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--color-borde);
+    padding: 25px 15px;
+    border-radius: 14px;
+    cursor: pointer;
+    background-color: #FDFDFD;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.file-upload-box:hover {
+    border-color: var(--color-terracota);
+    background-color: #FAF6F5;
+}
+
+.file-icon {
+    font-size: 26px;
+    color: #A0908E;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
+.file-upload-box:hover .file-icon {
+    color: var(--color-terracota);
+}
+
+.file-text {
+    font-size: 14px;
+    color: #7A6966;
+}
+
+.file-upload-box input[type="file"] {
+    display: none; /* Ocultamos el input feo por defecto */
+}
+
+/* --- Botón de Guardado Premium --- */
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-terracota);
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(169, 68, 51, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: var(--color-terracota-dark);
+    box-shadow: 0 6px 18px rgba(169, 68, 51, 0.25);
+    transform: translateY(-1px);
+}
+
+.btn-submit:active {
+    transform: translateY(1px);
+}
+
+/* --- Adaptabilidad Móvil (Celulares) --- */
+@media (max-width: 480px) {
+    .form-card {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-header h2 {
+        font-size: 21px;
+    }
+}

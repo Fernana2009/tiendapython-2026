@@ -1,38 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Registrar Producto</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Producto - Sistema Tienda</title>
+    <!-- Iconos de Font Awesome para darle un toque profesional -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Vinculado a tu CSS específico -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleregistrar_productos.css') }}">
 </head>
 <body>
 
-    <h1>Registrar Producto</h1>
+    <div class="form-container">
+        
+        <!-- Enlace superior para volver -->
+        <div class="header-navigation">
+            <a href="/" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Volver al inicio</a>
+        </div>
 
-    <a href="/">Volver al inicio</a>
+        <div class="form-card">
+            
+            <div class="form-header">
+                <h2><i class="fa-solid fa-box-open"></i> Registrar Nuevo Producto</h2>
+                <p>Ingresa los detalles para añadir el producto al inventario</p>
+            </div>
 
-    <hr>
+            <!-- Manejo de Mensajes Flash de Flask Estilizados -->
+            {% with mensajes = get_flashed_messages() %}
+                {% if mensajes %}
+                    <div class="flash-messages">
+                        {% for mensaje in mensajes %}
+                            <div class="flash-alert">
+                                <i class="fa-solid fa-circle-info"></i> {{ mensaje }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
 
-    {% with mensajes = get_flashed_messages() %}
-        {% if mensajes %}
-            {% for mensaje in mensajes %}
-                <p>{{ mensaje }}</p>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+            <!-- Formulario principal -->
+            <form action="/guardar" method="POST" enctype="multipart/form-data">
 
-    <form action="/guardar" method="POST" enctype="multipart/form-data">
+                <!-- Campo: Nombre -->
+                <div class="input-group">
+                    <label for="nombre">Nombre del producto</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-tag input-icon"></i>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Yogur de Fresa" required>
+                    </div>
+                </div>
 
-        <input type="text" name="nombre" placeholder="Nombre producto" required>
+                <!-- Fila doble para Precio y Stock (se acomoda lado a lado en PC) -->
+                <div class="form-row">
+                    <!-- Campo: Precio -->
+                    <div class="input-group">
+                        <label for="precio">Precio ($)</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-dollar-sign input-icon"></i>
+                            <input type="number" step="0.01" id="precio" name="precio" placeholder="0.00" required>
+                        </div>
+                    </div>
 
-        <input type="number" step="0.01" name="precio" placeholder="Precio" required>
+                    <!-- Campo: Stock -->
+                    <div class="input-group">
+                        <label for="stock">Cantidad en Stock</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-cubes input-icon"></i>
+                            <input type="number" id="stock" name="stock" placeholder="0" required>
+                        </div>
+                    </div>
+                </div>
 
-        <input type="number" name="stock" placeholder="Stock" required>
+                <!-- Campo: Imagen Subida de forma Premium -->
+                <div class="input-group">
+                    <label>Imagen del producto</label>
+                    <label class="file-upload-box" for="imagen">
+                        <i class="fa-solid fa-cloud-arrow-up file-icon"></i>
+                        <span class="file-text">Selecciona una imagen o arrástrala aquí</span>
+                        <input type="file" id="imagen" name="imagen" accept="image/*">
+                    </label>
+                </div>
 
-        <input type="file" name="imagen">
+                <!-- Botón de acción -->
+                <button type="submit" class="btn-submit">
+                    <i class="fa-solid fa-floppy-disk"></i> Guardar Producto
+                </button>
 
-        <button type="submit">Guardar</button>
+            </form>
 
-    </form>
+        </div>
+    </div>
 
+    <!-- Script opcional y rápido para cambiar el texto del input file al elegir una imagen -->
+    <script>
+        const fileInput = document.querySelector('#imagen');
+        const fileText = document.querySelector('.file-text');
+        
+        fileInput.addEventListener('change', function(e){
+            if(this.files && this.files.length > 0) {
+                fileText.textContent = "Imagen cargada: " + this.files[0].name;
+                document.querySelector('.file-upload-box').style.borderColor = "#1E7E7A";
+            }
+        });
+    </script>
 </body>
 </html>

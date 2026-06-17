@@ -1,103 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-
-    <title>Ver Productos</title>
-
-    <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Registrados - Sistema Tienda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylever_productos.css') }}">
 </head>
-
 <body>
 
-    <h1>Productos Registrados</h1>
+    <div class="table-container">
+        
+        <div class="header-navigation">
+            <a href="/" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Volver al inicio</a>
+        </div>
 
-    <a href="/">Volver al inicio</a>
+        <div class="table-card">
+            
+            <div class="table-header">
+                <h2><i class="fa-solid fa-boxes-stacked"></i> Productos Registrados</h2>
+                <p>Visualiza, busca y gestiona el inventario de la tienda</p>
+            </div>
 
-    <hr>
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="buscador" placeholder="Buscar producto por nombre, ID o precio...">
+            </div>
 
-    <div class="contenedor-tabla">
+            <div class="responsive-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><i class="fa-solid fa-hashtag"></i> ID</th>
+                            <th><i class="fa-solid fa-basket-shopping"></i> Nombre</th>
+                            <th><i class="fa-solid fa-dollar-sign"></i> Precio</th>
+                            <th><i class="fa-solid fa-image"></i> Imagen</th>
+                            <th><i class="fa-solid fa-cubes"></i> Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos %}
+                        <tr class="fila-producto">
+                            <td class="td-id">{{ producto[0] }}</td>
+                            <td class="td-nombre">{{ producto[1] }}</td>
+                            <td class="td-precio">${{ "%.2f"|format(producto[2]|float) }}</td>
+                            <td>
+                                {% if producto[3] %}
+                                    <div class="product-img-container">
+                                        <img src="{{ url_for('static', filename='uploads/' + producto[3]) }}" alt="{{ producto[1] }}">
+                                    </div>
+                                {% else %}
+                                    <span class="no-image"><i class="fa-solid fa-image-slash"></i> Sin foto</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span class="stock-badge {% if producto[4]|int <= 0 %}empty{% elif producto[4]|int < 5 %}low{% endif %}">
+                                    {{ producto[4] }} u.
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
-        <input 
-            type="text"
-            id="buscador"
-            placeholder="Buscar producto..."
-        >
-
-        <table border="1">
-
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Imagen</th>
-                <th>Stock</th>
-            </tr>
-
-            {% for producto in productos %}
-
-            <tr class="fila-producto">
-
-                <td>{{ producto[0] }}</td>
-
-                <td>{{ producto[1] }}</td>
-
-                <td>{{ producto[2] }}</td>
-
-                <td>
-
-                    {% if producto[3] %}
-
-                        <img 
-                        src="{{ url_for('static',
-                        filename='uploads/' + producto[3]) }}"
-                        width="80">
-
-                    {% else %}
-
-                        Sin imagen
-
-                    {% endif %}
-
-                </td>
-
-                <td>{{ producto[4] }}</td>
-
-            </tr>
-
-            {% endfor %}
-
-        </table>
-
+        </div>
     </div>
 
-<script>
+    <script>
+        const buscador = document.getElementById("buscador");
 
-const buscador = document.getElementById("buscador")
+        buscador.addEventListener("keyup", function(){
+            const texto = buscador.value.toLowerCase();
+            const filas = document.querySelectorAll(".fila-producto");
 
-buscador.addEventListener("keyup", function(){
+            filas.forEach(function(fila){
+                const contenido = fila.textContent.toLowerCase();
 
-    const texto = buscador.value.toLowerCase()
-
-    const filas = document.querySelectorAll(".fila-producto")
-
-    filas.forEach(function(fila){
-
-        const contenido = fila.textContent.toLowerCase()
-
-        if(contenido.includes(texto)){
-            fila.style.display = ""
-        }
-        else{
-            fila.style.display = "none"
-        }
-
-    })
-
-})
-
-</script>
-
+                if(contenido.includes(texto)){
+                    fila.style.display = "";
+                } else {
+                    fila.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 </html>

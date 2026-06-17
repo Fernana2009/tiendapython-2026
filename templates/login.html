@@ -2,43 +2,94 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Esencial para celular -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - Yaourt à l'axolotl</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tu archivo CSS específico para Login -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylelogin.css') }}">
 </head>
 <body>
 
-<div class="login-container">
-
-    <div class="login-card">
-        
-        <!-- Contenedor del logo oficial -->
-        <div class="logo-container">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Yaourt à l'axolotl" class="login-logo">
+    <!-- Barra de navegación superior opcional -->
+    <header class="navbar-superior">
+        <div class="nav-logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+            <span>Yaourt à l'axolotl</span>
         </div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Shop</a>
+        </nav>
+    </header>
 
-        <h1>Yaourt à l'axolotl</h1>
-        <p class="subtitle">Bienvenido nuevamente</p>
-
-        <form action="#" method="POST">
-
-            <div class="input-group">
-                <label for="correo">Correo electrónico</label>
-                <input type="email" id="correo" name="correo" placeholder="ejemplo@gmail.com" required>
+    <!-- Contenedor del Login -->
+    <div class="login-container">
+        <div class="login-card">
+            
+            <!-- Imagen del Logo Central -->
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Principal" class="login-logo">
             </div>
 
-            <div class="input-group">
-                <label for="clave">Contraseña</label>
-                <input type="password" id="clave" name="clave" placeholder="********" required>
+            <h1>Yaourt à l'axolotl</h1>
+            <p class="subtitle">Bienvenido nuevamente</p>
+
+            <form action="#" method="POST">
+
+                <!-- Campo Correo -->
+                <div class="form-group">
+                    <label for="correo">Correo electrónico</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope input-icon"></i>
+                        <input type="email" id="correo" name="correo" placeholder="ejemplo@gmail.com" required>
+                    </div>
+                </div>
+
+                <!-- Campo Contraseña -->
+                <div class="form-group">
+                    <label for="clave">Contraseña</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-key input-icon"></i>
+                        <input type="password" id="clave" name="clave" placeholder="********" required>
+                        <i class="fa-regular fa-eye-slash toggle-password" id="togglePassword"></i>
+                    </div>
+                </div>
+
+                <!-- Enlace Olvidé mi contraseña -->
+                <div class="forgot-container">
+                    <a href="#" class="forgot-link">Olvidé mi contraseña</a>
+                </div>
+
+                <!-- Botón con Gradiente Estilizado -->
+                <button type="submit" class="btn-submit">Iniciar Sesión</button>
+
+            </form>
+
+            <!-- Separador Opcional para Redes Sociales -->
+            <div class="social-login">
+                <a href="#" class="social-icon google"><i class="fa-brands fa-google"></i></a>
+                <a href="#" class="social-icon facebook"><i class="fa-brands fa-facebook-f"></i></a>
             </div>
 
-            <button type="submit">Iniciar Sesión</button>
+            <!-- Registro -->
+            <p class="register-text">¿No tienes cuenta? <a href="#">Regístrate</a></p>
 
-        </form>
-
+        </div>
     </div>
 
-</div>
+    <!-- Script rápido para hacer funcionar el ojo de la contraseña -->
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#clave');
 
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
 </body>
 </html>

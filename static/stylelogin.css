@@ -1,0 +1,300 @@
+/* --- Paleta de Colores Exclusiva --- */
+:root {
+    --color-terracota: #A94433;
+    --color-terracota-dark: #8E3425;
+    --color-crema-fondo: #FBF8F3;
+    --color-texto: #4A2E2B;
+    --color-borde: #E3D9D6;
+    --color-blanco: #FFFFFF;
+    /* Colores del gradiente del botón sacados de la interfaz moderna */
+    --gradiente-inicio: #1E7E7A; 
+    --gradiente-fin: #D6CDBC;
+}
+
+/* --- Reseteo y Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--color-crema-fondo);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* --- Marca de agua decorativa en el fondo --- */
+body::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background-image: url('/static/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.04; /* Súper sutil */
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* --- Barra de Navegación Superior --- */
+.navbar-superior {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.nav-logo span {
+    font-weight: 600;
+    color: var(--color-texto);
+    font-size: 18px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-texto);
+    margin-left: 20px;
+    font-size: 15px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+/* --- Contenedor e Interfaz del Login --- */
+.login-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px); /* Efecto vidrio esmerilado suave */
+    width: 100%;
+    max-width: 440px;
+    padding: 40px 35px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 15px 35px rgba(74, 46, 43, 0.06);
+    text-align: center;
+}
+
+/* --- Logo Central --- */
+.logo-container {
+    margin-bottom: 12px;
+}
+
+.login-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+h1 {
+    font-size: 26px;
+    color: var(--color-texto);
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    color: #8C7672;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+/* --- Campos de Entrada con Iconos Integrados --- */
+.form-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-texto);
+    margin-bottom: 6px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    color: #A0908E;
+    font-size: 16px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    color: #A0908E;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+.toggle-password:hover {
+    color: var(--color-terracota);
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 15px 14px 45px; /* Espacio extra a la izquierda para el icono */
+    border: 1.5px solid var(--color-borde);
+    border-radius: 12px;
+    font-size: 15px;
+    color: var(--color-texto);
+    background-color: var(--color-blanco);
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: #1E7E7A; /* Foco turquesa como el diseño */
+    box-shadow: 0 0 0 4px rgba(30, 126, 122, 0.1);
+}
+
+/* --- Enlace Olvidé contraseña --- */
+.forgot-container {
+    text-align: right;
+    margin-top: -8px;
+    margin-bottom: 24px;
+}
+
+.forgot-link {
+    font-size: 13px;
+    color: var(--color-texto);
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+.forgot-link:hover {
+    opacity: 1;
+    color: var(--color-terracota);
+}
+
+/* --- Botón Estilo Premium (Gradiente) --- */
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 30px; /* Bordes completamente redondeados */
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-blanco);
+    background: linear-gradient(90deg, var(--gradiente-inicio), #539E9B, var(--gradiente-fin));
+    background-size: 150% auto;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(30, 126, 122, 0.2);
+    transition: all 0.4s ease;
+}
+
+.btn-submit:hover {
+    background-position: right center;
+    box-shadow: 0 8px 20px rgba(30, 126, 122, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-submit:active {
+    transform: translateY(1px);
+}
+
+/* --- Botones de Login Social --- */
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0 20px 0;
+}
+
+.social-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    color: var(--color-texto);
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.social-icon.google:hover { color: #DB4437; border-color: #DB4437; }
+.social-icon.facebook:hover { color: #4267B2; border-color: #4267B2; }
+
+/* --- Texto Registro --- */
+.register-text {
+    font-size: 14px;
+    color: var(--color-texto);
+    opacity: 0.9;
+}
+
+.register-text a {
+    color: var(--color-texto);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.register-text a:hover {
+    color: var(--color-terracota);
+}
+
+/* --- Adaptación Total a Móviles --- */
+@media (max-width: 480px) {
+    .navbar-superior {
+        padding: 15px;
+    }
+    .nav-links {
+        display: none; /* Escondemos links en celular para ganar espacio */
+    }
+    .login-card {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+    h1 {
+        font-size: 22px;
+    }
+}
