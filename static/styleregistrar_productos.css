@@ -1,108 +1,242 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-
+/* --- Variables de Marca --- */
 :root {
-    --color-terracota: #643123;         /* El marrón rojizo oscuro exacto de la web */
-    --color-terracota-dark: #4d2318;    /* Variación hover más oscura */
-    --color-crema-fondo: #FDF8F2;       /* Fondo beige cálido orgánico */
-    --color-texto: #2C1A14;             /* Café oscuro casi negro para lectura limpia */
-    --color-borde: #E6DCD3;             /* Bordes suaves que no compiten visualmente */
+    --color-terracota: #A94433;
+    --color-terracota-dark: #8E3425;
+    --color-crema-fondo: #FBF8F3;
+    --color-texto: #4A2E2B;
+    --color-borde: #E3D9D6;
     --color-blanco: #FFFFFF;
-    --color-gris-suave: #F9F3EB;        /* Fondos alternos sutiles */
-    
-    /* Tipografías */
-    --font-serif: 'Playfair Display', serif;
-    --font-sans: 'Plus Jakarta Sans', sans-serif;
-    
-    /* Sombras ultra suaves de la referencia */
-    --shadow-soft: 0 12px 35px rgba(100, 49, 35, 0.04);
-}
-/* --- Tratamiento de Cursivas para el Título Editorial --- */
-.form-header h2 em {
-    font-style: italic;
-    font-family: var(--font-serif);
-    font-weight: 400;
+    --color-teal: #1E7E7A;
 }
 
-/* --- Nuevo Contenedor del Enlace de Imagen --- */
-.input-image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    margin-top: 10px;
-    margin-bottom: 30px;
+/* --- Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
-.file-link {
+body {
+    background-color: var(--color-crema-fondo);
+    color: var(--color-texto);
+    min-height: 100vh;
+    padding: 30px 20px;
+}
+
+/* --- Contenedor Principal --- */
+.table-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Botón Volver */
+.header-navigation {
+    margin-bottom: 20px;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: var(--color-texto);
+    font-size: 15px;
+    font-weight: 600;
+    opacity: 0.8;
+    transition: all 0.2s ease;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+}
+
+.btn-back:hover {
+    opacity: 1;
     color: var(--color-terracota);
-    font-weight: 600;
-    font-size: 15px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    padding: 4px 0;
 }
 
-.file-link i {
-    font-size: 18px;
+/* --- Tarjeta Base --- */
+.table-card {
+    background-color: var(--color-blanco);
+    padding: 35px;
+    border-radius: 24px;
+    border: 1px solid var(--color-borde);
+    box-shadow: 0 10px 30px rgba(74, 46, 43, 0.03);
 }
 
-.file-link span {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+.table-header {
+    margin-bottom: 25px;
 }
 
-.file-link:hover {
-    color: var(--color-terracota-dark);
-    transform: translateX(2px);
-}
-
-/* Cuando el archivo ya se subió */
-.file-link.uploaded {
-    color: #2E6B4E; /* Tono verde orgánico de la marca */
-}
-
-.file-status {
-    font-size: 13px;
-    color: #A6928A;
-    font-style: italic;
-    padding-left: 28px;
-}
-
-.file-status.active {
-    color: #2E6B4E;
-    font-weight: 500;
-    font-style: normal;
-}
-
-/* --- Botón de Guardado Ovalado Estilo Píldora --- */
-.btn-submit {
-    width: 100%;
-    padding: 16px;
-    background-color: var(--color-terracota);
-    color: var(--color-blanco);
-    border: none;
-    border-radius: 50px; /* Redondeado idéntico a los botones del banner principal */
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(100, 49, 35, 0.15);
+.table-header h2 {
+    color: var(--color-terracota);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 10px;
+}
+
+.table-header p {
+    color: #8C7672;
+    font-size: 14px;
+}
+
+/* --- Input Buscador Estilizado --- */
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    color: #A0908E;
+    font-size: 15px;
+}
+
+#buscador {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1.5px solid var(--color-borde);
+    border-radius: 12px;
+    font-size: 15px;
+    color: var(--color-texto);
+    background-color: #FFF;
     transition: all 0.3s ease;
 }
 
-.btn-submit:hover {
-    background-color: var(--color-terracota-dark);
-    box-shadow: 0 8px 25px rgba(100, 49, 35, 0.25);
-    transform: translateY(-1px);
+#buscador:focus {
+    outline: none;
+    border-color: var(--color-teal);
+    box-shadow: 0 0 0 4px rgba(30, 126, 122, 0.1);
 }
 
-.btn-submit:active {
-    transform: translateY(1px);
+/* --- Tabla de Diseño Premium --- */
+.responsive-table {
+    width: 100%;
+    overflow-x: auto; /* Permite scroll horizontal si la tabla es más grande que el celular */
+    border-radius: 14px;
+    border: 1px solid var(--color-borde);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 15px;
+    background-color: var(--color-blanco);
+}
+
+/* Encabezados */
+th {
+    background-color: #FAF5F3; /* Un tono crema muy suave */
+    color: var(--color-texto);
+    font-weight: 600;
+    padding: 16px;
+    border-bottom: 2px solid var(--color-borde);
+    white-space: nowrap;
+}
+
+th i {
+    color: var(--color-terracota);
+    margin-right: 4px;
+}
+
+/* Celdas del cuerpo */
+td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #F0EAE8;
+    vertical-align: middle;
+    color: #5C4542;
+}
+
+/* Alternar colores en las filas */
+tbody tr:nth-child(even) {
+    background-color: #FDFCFB;
+}
+
+/* Efecto hover en las filas */
+tbody tr:hover {
+    background-color: #FDF5F3;
+}
+
+/* Estilos de datos específicos */
+.td-id {
+    font-family: monospace;
+    font-weight: 600;
+    color: #9E8581;
+}
+
+.td-nombre {
+    font-weight: 600;
+    color: var(--color-texto);
+}
+
+.td-precio {
+    font-weight: 700;
+    color: var(--color-teal);
+}
+
+/* --- Contenedor de Imágenes Redondeadas --- */
+.product-img-container {
+    width: 55px;
+    height: 55px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--color-borde);
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image {
+    font-size: 13px;
+    color: #A0908E;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* --- Etiquetas de Stock (Badges) --- */
+.stock-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    background-color: #E6F4F3;
+    color: var(--color-teal);
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+/* Stock en 0 o negativo */
+.stock-badge.empty {
+    background-color: #FCEBE8;
+    color: var(--color-terracota);
+}
+
+/* Stock bajo (alerta menor a 5 unidades) */
+.stock-badge.low {
+    background-color: #FEF6E9;
+    color: #D48413;
+}
+
+/* --- Ajustes en pantallas chicas --- */
+@media (max-width: 600px) {
+    .table-card {
+        padding: 20px 15px;
+        border-radius: 20px;
+    }
+    
+    .table-header h2 {
+        font-size: 20px;
+    }
 }
