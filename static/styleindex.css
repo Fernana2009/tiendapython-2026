@@ -1,73 +1,185 @@
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#f7f1ea;
+/* --- Variables de Color de la Marca --- */
+:root {
+    --color-terracota: #A94433;
+    --color-crema-fondo: #FBF8F3;
+    --color-texto-oscuro: #4A2E2B;
+    --color-blanco: #FFFFFF;
+    --color-borde: #E0D7D5;
+    --color-gris-suave: #F5EFEF;
 }
 
-.login-container{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+/* --- Estilos Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.login-card{
-    width:400px;
-    background:white;
-    padding:40px;
-    border-radius:25px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+body {
+    background-color: var(--color-crema-fondo);
+    color: var(--color-texto-oscuro);
 }
 
-.login-card h1{
-    text-align:center;
-    color:#c84d74;
-    margin-bottom:10px;
+/* --- Encabezado Estilizado --- */
+.main-header {
+    background-color: var(--color-blanco);
+    border-bottom: 1px solid var(--color-borde);
+    padding: 15px 20px;
+    box-shadow: 0 4px 12px rgba(169, 68, 51, 0.04);
 }
 
-.login-card p{
-    text-align:center;
-    color:#666;
-    margin-bottom:30px;
+.header-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-.input-group{
-    margin-bottom:20px;
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.input-group label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:bold;
-    color:#311406;
+.main-logo {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
 }
 
-.input-group input{
-    width:100%;
-    padding:12px;
-    border:2px solid #f0d7df;
-    border-radius:12px;
-    box-sizing:border-box;
+.brand-text h1 {
+    font-size: 20px;
+    color: var(--color-terracota);
 }
 
-.input-group input:focus{
-    outline:none;
-    border-color:#c84d74;
+.user-welcome {
+    font-size: 14px;
+    opacity: 0.8;
 }
 
-button{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:30px;
-    background:#c84d74;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
+.user-welcome span {
+    font-weight: 600;
+    color: var(--color-terracota);
 }
 
-button:hover{
-    background:#b03d63;
+/* Botón Cerrar Sesión */
+.btn-logout {
+    padding: 10px 18px;
+    border: 1.5px solid var(--color-terracota);
+    color: var(--color-terracota);
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: var(--color-terracota);
+    color: var(--color-blanco);
+}
+
+/* --- Contenedor del Dashboard --- */
+.dashboard-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--color-terracota);
+    border-radius: 2px;
+}
+
+/* --- Grid de Tarjetas (Cards) Responsivo --- */
+.contenedor-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background-color: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    border-radius: 16px;
+    padding: 30px;
+    text-decoration: none;
+    color: var(--color-texto-oscuro);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-icon {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-size: 19px;
+    color: var(--color-terracota);
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.8;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Empuja la acción al fondo de la card */
+}
+
+.card-action {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-terracota);
+    transition: margin-left 0.2s ease;
+}
+
+/* Efectos Hover en las Tarjetas */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(169, 68, 51, 0.08);
+    border-color: var(--color-terracota);
+}
+
+.card:hover .card-action {
+    margin-left: 5px;
+}
+
+/* --- Ajustes Móviles --- */
+@media (max-width: 600px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .brand-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .btn-logout {
+        width: 100%;
+        text-align: center;
+    }
 }
