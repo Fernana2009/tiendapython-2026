@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
+/* --- Variables de Marca --- */
 :root {
     --color-terracota: #643123;         /* El marrón rojizo oscuro exacto de la web */
     --color-terracota-dark: #4d2318;    /* Variación hover más oscura */
@@ -13,21 +14,7 @@
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Plus Jakarta Sans', sans-serif;
     
-    /* Sombras ultra suaves de la referencia */
-    --shadow-soft: 0 12px 35px rgba(100, 49, 35, 0.04);
-}
-/* --- Variables de Marca --- */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-
-:root {
-    --color-terracota: #643123;
-    --color-terracota-dark: #4d2318;
-    --color-crema-fondo: #FDF8F2;
-    --color-texto: #2C1A14;
-    --color-borde: #E6DCD3;
-    --color-blanco: #FFFFFF;
-    --font-serif: 'Playfair Display', serif;
-    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    /* Sombras ultra suaves */
     --shadow-soft: 0 12px 35px rgba(100, 49, 35, 0.04);
 }
 
@@ -150,7 +137,7 @@ table {
     background-color: var(--color-blanco);
 }
 
-/* Encabezados de Tabla de estilo menú */
+/* Encabezados de Tabla */
 th {
     background-color: #FAF5EE; /* Crema suave para cabeceras */
     color: var(--color-texto);
@@ -175,7 +162,7 @@ td {
     color: var(--color-texto);
 }
 
-/* Alternar colores en las filas de forma sutil */
+/* Alternar colores en las filas */
 tbody tr:nth-child(even) {
     background-color: #FDFDFD;
 }
@@ -200,14 +187,14 @@ tbody tr:hover {
 
 .td-precio {
     font-weight: 700;
-    color: var(--color-terracota); /* El precio toma el color de acento primario */
+    color: var(--color-terracota);
 }
 
-/* --- Contenedor de Imágenes Circulares u Ovaladas --- */
+/* --- Contenedor de Imágenes Circulares --- */
 .product-img-container {
     width: 50px;
     height: 50px;
-    border-radius: 50%; /* Cambiado a círculos como los gráficos de la web */
+    border-radius: 50%;
     overflow: hidden;
     border: 1.5px solid var(--color-borde);
     background-color: #FFF;
@@ -231,29 +218,70 @@ tbody tr:hover {
     gap: 5px;
 }
 
-/* --- Etiquetas de Stock (Badges Redondeados) --- */
+/* --- Etiquetas de Stock --- */
 .stock-badge {
     display: inline-block;
     padding: 6px 14px;
-    background-color: #EBF5F0; /* Tono verde natural suave */
+    background-color: #EBF5F0;
     color: #2E6B4E;
     font-size: 13px;
     font-weight: 600;
     border-radius: 30px;
 }
 
-/* Stock en 0 (Agotado) cambia a la paleta roja de la marca */
 .stock-badge.empty {
     background-color: #FDF2F0;
     color: var(--color-terracota);
 }
 
-/* Stock bajo */
 .stock-badge.low {
     background-color: #FFF8EC;
     color: #A66E1E;
 }
 
+/* --- Animación cuando una fila se está borrando --- */
+.fila-producto {
+    transition: all 0.3s ease;
+}
+
+/* --- Botón Eliminar Moderno y Presentable --- */
+.btn-delete {
+    background-color: #FAF2F0; /* Fondo terracota muy lavado y elegante */
+    color: #A3473B;           /* Texto carmín suave */
+    border: 1px solid #F1DFDC;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s ease;
+}
+
+.btn-delete i {
+    font-size: 12px;
+    transition: transform 0.2s ease;
+}
+
+/* Efectos Hover */
+.btn-delete:hover {
+    background-color: #D9534F; /* Se vuelve rojo sólido corporativo al pasar el cursor */
+    color: var(--color-blanco);
+    border-color: #D9534F;
+    box-shadow: 0 4px 12px rgba(217, 83, 79, 0.15);
+}
+
+.btn-delete:hover i {
+    transform: scale(1.1);
+}
+
+.btn-delete:active {
+    transform: scale(0.96);
+}
+
+/* Responsive */
 @media (max-width: 600px) {
     .table-card { padding: 25px 15px; border-radius: 20px; }
     .table-header h2 { font-size: 22px; }

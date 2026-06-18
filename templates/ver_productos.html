@@ -36,11 +36,12 @@
                             <th><i class="fa-solid fa-dollar-sign"></i> Precio</th>
                             <th><i class="fa-solid fa-image"></i> Imagen</th>
                             <th><i class="fa-solid fa-cubes"></i> Stock</th>
+                            <th><i class="fa-solid fa-gear"></i> Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for producto in productos %}
-                        <tr class="fila-producto">
+                        <tr class="fila-producto" id="fila-{{ producto[0] }}">
                             <td class="td-id">{{ producto[0] }}</td>
                             <td class="td-nombre">{{ producto[1] }}</td>
                             <td class="td-precio">${{ "%.2f"|format(producto[2]|float) }}</td>
@@ -58,6 +59,11 @@
                                     {{ producto[4] }} u.
                                 </span>
                             </td>
+                            <td>
+                                <button class="btn-delete" onclick="eliminarProducto('{{ producto[0] }}', '{{ producto[1] }}')">
+                                    <i class="fa-solid fa-trash-can"></i> Eliminar
+                                </button>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -68,6 +74,7 @@
     </div>
 
     <script>
+        // Buscador dinámico de productos
         const buscador = document.getElementById("buscador");
 
         buscador.addEventListener("keyup", function(){
@@ -84,6 +91,28 @@
                 }
             });
         });
+
+        // NUEVA FUNCIÓN: Elimina de forma asíncrona sin romper la pantalla
+        function eliminarProducto(id, nombreProducto) {
+            if (confirm(`¿Estás seguro de que deseas eliminar el producto "${nombreProducto}"?`)) {
+                
+                // Hace la petición al servidor de forma silenciosa
+                fetch(`/eliminar/${id}`, { method: 'GET' })
+                .then(response => {
+                    // Quitamos la fila visualmente de inmediato sin importar el redireccionamiento interno
+                    const fila = document.getElementById(`fila-${id}`);
+                    if (fila) {
+                        fila.style.transition = "all 0.4s ease";
+                        fila.style.opacity = "0";
+                        fila.style.transform = "translateX(20px)";
+                        setTimeout(() => fila.remove(), 400);
+                    }
+                })
+                .catch(error => {
+                    console.log("Error al procesar el borrado en base de datos:", error);
+                });
+            }
+        }
     </script>
 </body>
 </html>

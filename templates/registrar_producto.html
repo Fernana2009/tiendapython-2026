@@ -26,9 +26,11 @@
                 {% with mensajes = get_flashed_messages() %}
                     {% if mensajes %}
                         {% for mensaje in mensajes %}
-                            <div class="flash-alert">
-                                <i class="fa-solid fa-circle-info"></i> {{ mensaje }}
-                            </div>
+                            {% if "Sesión" not in mensaje and "Bienvenido" not in mensaje %}
+                                <div class="flash-alert">
+                                    <i class="fa-solid fa-circle-info"></i> {{ mensaje }}
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
@@ -114,27 +116,23 @@
                 errores.push("Debes añadir un enlace de imagen para la visualización en el catálogo.");
             }
 
-            // Si se detectó aunque sea un error, detenemos el envío y renderizamos las alertas detalladas
             if (errores.length > 0) {
-                event.preventDefault(); // Cancela la recarga
+                event.preventDefault(); 
                 
-                // Limpiamos los mensajes del intento anterior
                 alertContainer.innerHTML = "";
 
-                // Generamos una cajita roja elegante por cada error encontrado
                 errores.forEach(function(errorTxt) {
                     const alertDiv = document.createElement('div');
                     alertDiv.className = 'flash-alert';
                     alertDiv.style.borderColor = '#D9534F';
                     alertDiv.style.color = '#D9534F';
                     alertDiv.style.backgroundColor = '#FDF2F2';
-                    alertDiv.style.marginBottom = '8px'; // Separación sutil entre alertas
+                    alertDiv.style.marginBottom = '8px';
                     alertDiv.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${errorTxt}`;
                     
                     alertContainer.appendChild(alertDiv);
                 });
 
-                // Scroll suave a la parte superior de la tarjeta para revisar los errores de inmediato
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });

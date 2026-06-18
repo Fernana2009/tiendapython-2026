@@ -160,5 +160,29 @@ def ver_productos():
         productos=productos,
         buscar=buscar
     )
-if __name__=="__main__":
-    app.run(debug=True)
+# =========================================================
+# RUTA CORREGIDA: Eliminar producto definitivamente
+# =========================================================
+@app.route("/eliminar/<int:id>", methods=["GET"])
+def eliminar(id):
+    if "correo" not in session:
+        return "No autorizado", 401
+
+    try:
+        # 1. Preparamos la consulta SQL
+        sql = "DELETE FROM productos WHERE id = %s"
+        valores = (id,)
+        
+        # 2. Ejecutamos el borrado
+        cursor.execute(sql, valores)
+        
+        # 3. ¡CRITICAL! Confirmamos los cambios en la Base de Datos
+        conexion.commit()
+        
+        # 4. Respondemos con un estado exitoso puro (200) sin redirecciones
+        return "OK", 200
+        
+    except Exception as e:
+        # Si algo falla en la base de datos, lo veremos en la consola de la terminal
+        print(f"Error crítico al eliminar producto en la BD: {e}")
+        return "Error interno", 500
