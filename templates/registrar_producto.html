@@ -3,87 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos Registrados - Yaourt à l'axolotl</title>
+    <title>Registrar Producto - Yaourt à l'axolotl</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='stylever_productos.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleregistrar_productos.css') }}">
 </head>
 <body>
 
-    <div class="catalog-container">
+    <div class="form-container">
         
         <div class="header-navigation">
             <a href="/" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Volver al inicio</a>
         </div>
 
-        <header class="catalog-header">
-            <p class="subtitle">Nuestra Selección</p>
-            <h2>Sabores que <em>despiertan</em> los sentidos</h2>
-            <p class="description">Visualiza, busca y gestiona el inventario activo de la tienda</p>
-        </header>
-
-        <div class="search-container">
-            <div class="search-wrapper">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" id="search-input" placeholder="Buscar producto por nombre...">
+        <div class="form-card">
+            
+            <div class="form-header">
+                <h2>Registrar Nuevo <em>Producto</em></h2>
+                <p>Ingresa los detalles para añadir el producto al inventario</p>
             </div>
-        </div>
 
-        <div class="products-grid" id="products-container">
-            {% for producto in productos %}
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    {% if producto.stock <= 5 %}
-                        <span class="product-badge low-stock">Por agotarse</span>
-                    {% else %}
-                        <span class="product-badge con-stock">Artesanal</span>
+            <div class="flash-messages" id="custom-alerts">
+                {% with mensajes = get_flashed_messages() %}
+                    {% if mensajes %}
+                        {% for mensaje in mensajes %}
+                            <div class="flash-alert">
+                                <i class="fa-solid fa-circle-info"></i> {{ mensaje }}
+                            </div>
+                        {% endfor %}
                     {% endif %}
-                    
-                    <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1571151596589-de953164a66e?q=80&w=600&auto=format&fit=crop';">
-                </div>
+                {% endwith %}
+            </div>
 
-                <div class="product-info">
-                    <div class="product-header-row">
-                        <h3 class="product-title">{{ producto.nombre }}</h3>
-                        <span class="product-price">${{ "%.2f"|format(producto.precio) }}</span>
-                    </div>
-                    
-                    <p class="product-stock-text">
-                        Cantidad en inventario: <strong>{{ producto.stock }} u.</strong>
-                    </p>
+            <form action="/guardar" method="POST" id="form-registro">
 
-                    <div class="product-actions">
-                        <span class="id-tag">ID: #{{ producto.id }}</span>
-                        <a href="/eliminar/{{ producto.id }}" class="btn-delete" onclick="return confirm('¿Seguro que deseas eliminar este producto?');">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
+                <div class="input-group">
+                    <label for="nombre">Nombre del producto</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-tag input-icon"></i>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Yogur de Fresa" required>
                     </div>
                 </div>
-            </div>
-            {% else %}
-            <div class="empty-catalog">
-                <i class="fa-solid fa-box-open"></i>
-                <p>No hay productos registrados en el inventario actual.</p>
-                <a href="/registrar-producto" class="btn-register-redirect">Registrar primer producto</a>
-            </div>
-            {% endfor %}
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="precio">Precio ($)</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-dollar-sign input-icon"></i>
+                            <input type="number" step="0.01" id="precio" name="precio" placeholder="0.00" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="stock">Cantidad en Stock</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-cubes input-icon"></i>
+                            <input type="number" id="stock" name="stock" placeholder="0" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="imagen">Enlace de la imagen del producto</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-link input-icon"></i>
+                        <input type="url" id="imagen" name="imagen" placeholder="https://ejemplo.com/imagen.jpg" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Guardar Producto
+                </button>
+
+            </form>
+
         </div>
-
     </div>
 
     <script>
-        document.getElementById('search-input').addEventListener('input', function(e) {
-            const searchText = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.product-card');
+        document.getElementById('form-registro').addEventListener('submit', function(event) {
+            const nombreInput = document.getElementById('nombre');
+            const precioInput = document.getElementById('precio');
+            const stockInput = document.getElementById('stock');
+            const imagenInput = document.getElementById('imagen');
+            const alertContainer = document.getElementById('custom-alerts');
             
-            cards.forEach(card => {
-                const title = card.querySelector('.product-title').textContent.toLowerCase();
-                if(title.includes(searchText)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+            const nombre = nombreInput.value.trim();
+            const precio = parseFloat(precioInput.value);
+            const stock = parseInt(stockInput.value);
+            const imagen = imagenInput.value.trim();
+
+            let errores = [];
+
+            // 1. Error de Nombre vacío
+            if (nombre === "") {
+                errores.push("Falta ingresar el nombre del producto.");
+            }
+
+            // 2. Error de Precio en 0 o menor
+            if (precio <= 0 || isNaN(precio)) {
+                errores.push("No se puede registrar el producto con precio 0 o menor (requiere un valor de venta válido).");
+            }
+
+            // 3. Error de Stock en 0 o menor
+            if (stock <= 0 || isNaN(stock)) {
+                errores.push("La cantidad en stock debe ser mayor a 0 para poder habilitar existencias.");
+            }
+
+            // 4. Error de Imagen faltante
+            if (imagen === "") {
+                errores.push("Debes añadir un enlace de imagen para la visualización en el catálogo.");
+            }
+
+            // Si se detectó aunque sea un error, detenemos el envío y renderizamos las alertas detalladas
+            if (errores.length > 0) {
+                event.preventDefault(); // Cancela la recarga
+                
+                // Limpiamos los mensajes del intento anterior
+                alertContainer.innerHTML = "";
+
+                // Generamos una cajita roja elegante por cada error encontrado
+                errores.forEach(function(errorTxt) {
+                    const alertDiv = document.createElement('div');
+                    alertDiv.className = 'flash-alert';
+                    alertDiv.style.borderColor = '#D9534F';
+                    alertDiv.style.color = '#D9534F';
+                    alertDiv.style.backgroundColor = '#FDF2F2';
+                    alertDiv.style.marginBottom = '8px'; // Separación sutil entre alertas
+                    alertDiv.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${errorTxt}`;
+                    
+                    alertContainer.appendChild(alertDiv);
+                });
+
+                // Scroll suave a la parte superior de la tarjeta para revisar los errores de inmediato
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         });
     </script>
+
 </body>
 </html>

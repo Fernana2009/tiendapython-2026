@@ -1,242 +1,237 @@
-/* --- Variables de Marca --- */
+/* ==========================================================================
+   ESTILOS PREMIUM - REGISTRAR PRODUCTO (YAOURT À L'AXOLOTL)
+   ========================================================================== */
+
+/* 1. Variables de Diseño Integradas con la Identidad de la Marca */
 :root {
-    --color-terracota: #A94433;
-    --color-terracota-dark: #8E3425;
-    --color-crema-fondo: #FBF8F3;
-    --color-texto: #4A2E2B;
-    --color-borde: #E3D9D6;
-    --color-blanco: #FFFFFF;
-    --color-teal: #1E7E7A;
+    --color-fondo-pagina: #FDF8F5;       /* Crema ultra suave de fondo general */
+    --color-blanco-card: #FFFFFF;        /* Blanco puro para el contenedor */
+    --color-texto-principal: #3D2314;   /* Café oscuro profundo para títulos */
+    --color-texto-secundario: #8E7A71;  /* Café grisáceo para subtítulos y etiquetas */
+    --color-terracota: #643123;         /* Terracota insignia para botones y links */
+    --color-terracota-hover: #4A2218;   /* Tono más oscuro al pasar el cursor */
+    --color-borde-input: #EFE6E1;       /* Línea sutil de los campos de texto */
+    --color-focus-input: #C4A495;       /* Color de enfoque al escribir */
+    
+    /* Tipografías extraídas del sitio web editorial */
+    --fuente-sans: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --fuente-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
 }
 
-/* --- Base --- */
-* {
+/* 2. Configuración del Cuerpo y Fondo General */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-}
-
-body {
-    background-color: var(--color-crema-fondo);
-    color: var(--color-texto);
+    background-color: var(--color-fondo-pagina);
+    font-family: var(--fuente-sans);
+    color: var(--color-texto-principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
-    padding: 30px 20px;
+    box-sizing: border-box;
 }
 
-/* --- Contenedor Principal --- */
-.table-container {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-/* Botón Volver */
+/* 3. Navegación Superior: "Volver al inicio" */
 .header-navigation {
+    width: 100%;
+    max-width: 680px;
     margin-bottom: 20px;
 }
 
 .btn-back {
-    text-decoration: none;
-    color: var(--color-texto);
-    font-size: 15px;
-    font-weight: 600;
-    opacity: 0.8;
-    transition: all 0.2s ease;
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    color: var(--color-texto-principal);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: transform 0.2s ease;
 }
 
 .btn-back:hover {
-    opacity: 1;
+    transform: translateX(-4px);
+}
+
+/* 4. Contenedor Base del Formulario */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 40px 20px;
+}
+
+/* 5. La Tarjeta Blanca Principal (Mismos bordes redondeados del sitio original) */
+.form-card {
+    background-color: var(--color-blanco-card);
+    width: 100%;
+    max-width: 680px;
+    padding: 50px 60px;
+    border-radius: 40px; /* Curvatura orgánica idéntica al contenedor */
+    box-shadow: 0 20px 50px rgba(100, 49, 35, 0.04); /* Sombra ultra suave y difuminada */
+    box-sizing: border-box;
+}
+
+/* 6. Cabecera del Formulario (Tipografía Compuesta) */
+.form-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-header h2 {
+    font-family: var(--fuente-serif);
+    font-size: 36px;
+    font-weight: 700;
     color: var(--color-terracota);
+    margin: 0 0 10px 0;
+    letter-spacing: -0.5px;
 }
 
-/* --- Tarjeta Base --- */
-.table-card {
-    background-color: var(--color-blanco);
-    padding: 35px;
-    border-radius: 24px;
-    border: 1px solid var(--color-borde);
-    box-shadow: 0 10px 30px rgba(74, 46, 43, 0.03);
+/* Estilo para las cursivas elegantes de la marca */
+.form-header h2 em {
+    font-style: italic;
+    font-family: var(--fuente-serif);
+    font-weight: 400;
 }
 
-.table-header {
+.form-header p {
+    color: var(--color-texto-secundario);
+    font-size: 15px;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* 7. Elementos de los Campos de Entrada (Formularios Estilizados) */
+.input-group {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--color-texto-principal);
+}
+
+/* Envoltura del input para posicionar los iconos internos */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 20px;
+    color: var(--color-texto-secundario);
+    font-size: 15px;
+    opacity: 0.7;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 16px 20px 16px 52px; /* Espacio extra a la izquierda para el icono */
+    border: 1.5px solid var(--color-borde-input);
+    border-radius: 16px; /* Esquinas suavizadas */
+    font-family: var(--fuente-sans);
+    font-size: 15px;
+    color: var(--color-texto-principal);
+    background-color: transparent;
+    outline: none;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
+
+/* Efectos al hacer clic en los campos */
+.input-wrapper input:focus {
+    border-color: var(--color-focus-input);
+    background-color: rgba(248, 240, 236, 0.3);
+}
+
+/* Estilización del marcador de posición (Placeholder) */
+.input-wrapper input::placeholder {
+    color: #C0B1AA;
+}
+
+/* 8. Fila de campos Dobles (Precio y Stock en paralelo en PC) */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* 9. Casilla Interactiva para el Enlace de la Imagen (URL) */
+.input-image-container {
+    margin-top: 10px;
+    margin-bottom: 35px;
+}
+
+/* 10. Botón de Acción Principal (Estilo Píldora Ovalado Completo) */
+.btn-submit {
+    width: 100%;
+    padding: 18px;
+    background-color: var(--color-terracota);
+    color: var(--color-blanco-card);
+    border: none;
+    border-radius: 50px; /* Estilo píldora ovalado idéntico a "Ver productos" de tu banner */
+    font-family: var(--fuente-sans);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(100, 49, 35, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-submit:hover {
+    background-color: var(--color-terracota-hover);
+    box-shadow: 0 12px 30px rgba(100, 49, 35, 0.25);
+    transform: translateY(-2px);
+}
+
+.btn-submit:active {
+    transform: translateY(1px);
+}
+
+/* 11. Estilos para los Mensajes Flash de Alerta (Flask) */
+.flash-messages {
     margin-bottom: 25px;
 }
 
-.table-header h2 {
+.flash-alert {
+    background-color: #F9EFEA;
+    border: 1px solid #EAD8CE;
     color: var(--color-terracota);
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 5px;
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-size: 14px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.table-header p {
-    color: #8C7672;
-    font-size: 14px;
-}
-
-/* --- Input Buscador Estilizado --- */
-.search-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-.search-icon {
-    position: absolute;
-    left: 15px;
-    color: #A0908E;
-    font-size: 15px;
-}
-
-#buscador {
-    width: 100%;
-    padding: 12px 15px 12px 45px;
-    border: 1.5px solid var(--color-borde);
-    border-radius: 12px;
-    font-size: 15px;
-    color: var(--color-texto);
-    background-color: #FFF;
-    transition: all 0.3s ease;
-}
-
-#buscador:focus {
-    outline: none;
-    border-color: var(--color-teal);
-    box-shadow: 0 0 0 4px rgba(30, 126, 122, 0.1);
-}
-
-/* --- Tabla de Diseño Premium --- */
-.responsive-table {
-    width: 100%;
-    overflow-x: auto; /* Permite scroll horizontal si la tabla es más grande que el celular */
-    border-radius: 14px;
-    border: 1px solid var(--color-borde);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    font-size: 15px;
-    background-color: var(--color-blanco);
-}
-
-/* Encabezados */
-th {
-    background-color: #FAF5F3; /* Un tono crema muy suave */
-    color: var(--color-texto);
-    font-weight: 600;
-    padding: 16px;
-    border-bottom: 2px solid var(--color-borde);
-    white-space: nowrap;
-}
-
-th i {
-    color: var(--color-terracota);
-    margin-right: 4px;
-}
-
-/* Celdas del cuerpo */
-td {
-    padding: 14px 16px;
-    border-bottom: 1px solid #F0EAE8;
-    vertical-align: middle;
-    color: #5C4542;
-}
-
-/* Alternar colores en las filas */
-tbody tr:nth-child(even) {
-    background-color: #FDFCFB;
-}
-
-/* Efecto hover en las filas */
-tbody tr:hover {
-    background-color: #FDF5F3;
-}
-
-/* Estilos de datos específicos */
-.td-id {
-    font-family: monospace;
-    font-weight: 600;
-    color: #9E8581;
-}
-
-.td-nombre {
-    font-weight: 600;
-    color: var(--color-texto);
-}
-
-.td-precio {
-    font-weight: 700;
-    color: var(--color-teal);
-}
-
-/* --- Contenedor de Imágenes Redondeadas --- */
-.product-img-container {
-    width: 55px;
-    height: 55px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid var(--color-borde);
-    background-color: #FFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.product-img-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.no-image {
-    font-size: 13px;
-    color: #A0908E;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
-
-/* --- Etiquetas de Stock (Badges) --- */
-.stock-badge {
-    display: inline-block;
-    padding: 5px 12px;
-    background-color: #E6F4F3;
-    color: var(--color-teal);
-    font-size: 13px;
-    font-weight: 600;
-    border-radius: 20px;
-}
-
-/* Stock en 0 o negativo */
-.stock-badge.empty {
-    background-color: #FCEBE8;
-    color: var(--color-terracota);
-}
-
-/* Stock bajo (alerta menor a 5 unidades) */
-.stock-badge.low {
-    background-color: #FEF6E9;
-    color: #D48413;
-}
-
-/* --- Ajustes en pantallas chicas --- */
+/* 12. Diseño Adaptable para Dispositivos Móviles (Responsivo) */
 @media (max-width: 600px) {
-    .table-card {
-        padding: 20px 15px;
-        border-radius: 20px;
+    .form-card {
+        padding: 35px 25px;
+        border-radius: 30px;
     }
     
-    .table-header h2 {
-        font-size: 20px;
+    .form-row {
+        grid-template-columns: 1fr; /* Pone Precio y Stock uno debajo del otro en celulares */
+        gap: 0;
+    }
+    
+    .form-header h2 {
+        font-size: 28px;
     }
 }

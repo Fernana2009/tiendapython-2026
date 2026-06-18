@@ -47,7 +47,7 @@
                             <td>
                                 {% if producto[3] %}
                                     <div class="product-img-container">
-                                        <img src="{{ url_for('static', filename='uploads/' + producto[3]) }}" alt="{{ producto[1] }}">
+                                        <img src="{{ producto[3] }}" alt="{{ producto[1] }}">
                                     </div>
                                 {% else %}
                                     <span class="no-image"><i class="fa-solid fa-image-slash"></i> Sin foto</span>

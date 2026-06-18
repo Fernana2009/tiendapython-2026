@@ -29,25 +29,21 @@ def guardar():
     if "correo" not in session:
         return redirect("/login")
 
+    # Recogemos los campos de texto del formulario
     nombre = request.form["nombre"]
     precio = request.form["precio"]
     stock = request.form["stock"]
+    
+    # CORRECCIÓN: Ahora se recibe como texto (URL) en lugar de request.files
+    imagen_url = request.form["imagen"] 
 
-    imagen = request.files["imagen"]
-
-    nombre_imagen = ""
-
-    if imagen and imagen.filename != "":
-        nombre_imagen = secure_filename(imagen.filename)
-        ruta = os.path.join(app.config["UPLOAD_FOLDER"], nombre_imagen)
-        imagen.save(ruta)
-
+    # Guardamos directamente la URL de internet en la base de datos
     sql = """
     INSERT INTO productos(nombre, precio, stock, imagen)
     VALUES(%s, %s, %s, %s)
     """
 
-    valores = (nombre, precio, stock, nombre_imagen)
+    valores = (nombre, precio, stock, imagen_url)
 
     cursor.execute(sql, valores)
     conexion.commit()
